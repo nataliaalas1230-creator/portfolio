@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natalia Alas — Brand & Visual Designer</title>
+<meta name="description" content="Portfolio of Natalia Alas, brand and visual designer based in Chicago.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:wght@400;500&family=Xanh+Mono&display=swap" rel="stylesheet">
+<style>
+  /* Black is the main color, white the secondary, in every light/dark setting */
+  :root {
+    color-scheme: dark;
+    --bg: #050505; --text: #f2f2f2; --muted: #8c8c8c; --line: #262626;
+    --pill: #f2f2f2; --pill-text: #050505;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Alegreya Sans", Georgia, sans-serif; font-size: 17px; line-height: 1.4;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  a:hover { opacity: 0.55; }
+  .caps { font-size: 13px; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.35; }
+  .label { font-size: 13px; color: var(--muted); }
+  .pad { padding-left: 24px; padding-right: 24px; }
+
+  /* Top bar */
+  .top { display: flex; justify-content: space-between; padding-top: 24px; }
+  .top ul { list-style: none; }
+
+  /* Hero: illuminated A + giant name */
+  .hero {
+    min-height: calc(100vh - 66px); min-height: calc(100svh - 66px);
+    display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: max(14vh, 120px);
+  }
+  /* The first A in ALAS is an illuminated initial: the frame draws itself,
+     vines grow up the sides, hatching and leaves appear, then the A is drawn and inked in. */
+  .giant .ch.illum { transform: none; animation: none; vertical-align: 0; margin-right: 0.04em; cursor: default; }
+  .illum svg { height: 0.7em; width: 0.6em; display: block; overflow: visible; color: var(--text); }
+  .illum .draw {
+    fill: none; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.6,0,.2,1) forwards var(--d);
+  }
+  .illum .frame { animation-duration: 1.2s; }
+  .illum .vine { animation-delay: calc(var(--d) + 0.5s); animation-duration: 1.8s; }
+  .illum .leaf { fill: currentColor; opacity: 0; animation: ink 0.8s ease forwards calc(var(--d) + 1.5s); }
+  .illum .hatch { stroke: currentColor; stroke-width: 0.6; opacity: 0; animation: hatch 1.2s ease forwards calc(var(--d) + 1.2s); }
+  .illum .letter {
+    font-family: Marcellus, Georgia, serif; font-size: 82px; text-anchor: middle;
+    fill: currentColor; fill-opacity: 0; stroke: currentColor; stroke-width: 1;
+    stroke-dasharray: 420; stroke-dashoffset: 420;
+    animation: draw 1.8s cubic-bezier(.6,0,.2,1) forwards calc(var(--d) + 0.7s), inkText 1s ease forwards calc(var(--d) + 2.1s);
+  }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes inkText { to { fill-opacity: 1; } }
+  @keyframes ink { to { opacity: 1; } }
+  @keyframes hatch { to { opacity: 0.35; } }
+
+  .giant {
+    font-family: Marcellus, Georgia, serif; text-transform: uppercase;
+    font-size: 23.5vw; line-height: 0.82; letter-spacing: -0.03em;
+    white-space: nowrap; padding-left: 1.2vw;
+  }
+  .giant .line { display: block; overflow: hidden; padding-bottom: 0.06em; margin-bottom: -0.06em; }
+  .giant .ch { display: inline-block; transform: translateY(105%); animation: rise 1s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes rise { to { transform: none; } }
+
+  /* Quote + services */
+  .intro { display: grid; gap: 48px; padding-top: 120px; padding-bottom: 160px; }
+  @media (min-width: 900px) { .intro { grid-template-columns: 1fr 1fr; } }
+  .quote { font-family: Marcellus, Georgia, serif; font-size: clamp(2rem, 4.6vw, 3.75rem); line-height: 1.05; max-width: 14ch; }
+  .quote::before { content: "\201C"; display: block; font-size: 1.6em; line-height: 0.6; margin-bottom: 8px; }
+  .services ul { list-style: none; margin-top: 10px; font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.2; }
+
+  /* Projects */
+  .project { padding-top: 40px; padding-bottom: 120px; border-top: 1px solid var(--line); }
+  .project h2 { font-family: Marcellus, Georgia, serif; font-weight: 400; font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.01em; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; max-width: 900px; }
+  .meta ul { list-style: none; margin-top: 6px; }
+  .about-p { margin-top: 32px; max-width: 900px; }
+  .about-p p { margin-top: 6px; font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.35; }
+  .more { display: inline-block; margin-top: 28px; font-size: 1.15rem; border-bottom: 1px solid currentColor; }
+  .count { margin-top: 56px; font-size: 13px; font-variant-numeric: tabular-nums; }
+
+  .slides {
+    display: flex; gap: 8px; margin-top: 14px; overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; padding: 0 24px; scroll-padding: 0 24px; cursor: grab;
+  }
+  .slides::-webkit-scrollbar { display: none; }
+  .slides img {
+    height: clamp(260px, 62vh, 640px); width: auto; flex: none; scroll-snap-align: start;
+    background: var(--line); display: block; user-select: none; -webkit-user-drag: none;
+  }
+
+  /* About + contact */
+  /* About: dark, personal, like the original nataliaalas.com/about */
+  .about { background: var(--bg); color: var(--text); padding: 96px 24px 120px; border-top: 1px solid var(--line); }
+  /* Everything in the stage is sized from the photo's width (cqw), so the O
+     in ABOUT sits over the face the same way on phones and desktops. */
+  .about .stage { position: relative; width: min(560px, 74vw); margin: 0 auto; container-type: inline-size; }
+  .about .photo { width: 100%; aspect-ratio: 587 / 565; object-fit: cover; display: block; }
+  .about h2 {
+    position: absolute; left: var(--o-x); top: var(--o-y); transform: translate(-50%, -50%);
+    --o-x: 55.2%; --o-y: 51%; /* face center in the photo, adjusted for where the O sits in the word */
+    font-family: Marcellus, Georgia, serif; font-weight: 400; white-space: nowrap;
+    font-size: 36cqw; line-height: 1; letter-spacing: 0.01em; text-transform: uppercase;
+    color: #ececec; text-shadow: 0 2px 30px rgb(0 0 0 / 0.25); pointer-events: none;
+  }
+  .about .bio {
+    max-width: 1100px; margin: 40px auto 0;
+    font-family: "Xanh Mono", "Courier New", monospace; text-transform: uppercase;
+    font-size: clamp(0.95rem, 1.5vw, 1.15rem); line-height: 1.4; letter-spacing: 0.01em;
+  }
+  .about .socials { max-width: 1100px; margin: 28px auto 0; }
+  .about .socials p { font-family: Marcellus, Georgia, serif; font-size: 1.1rem; text-transform: uppercase; }
+  .about .socials div { display: flex; gap: 16px; margin-top: 14px; }
+  .about .socials svg { width: 22px; height: 22px; fill: currentColor; display: block; }
+  .contact { padding-top: 40px; padding-bottom: 160px; border-top: 1px solid var(--line); text-align: center; }
+  .contact a.big { display: inline-block; margin-top: 48px; font-family: Marcellus, Georgia, serif; font-size: clamp(2.25rem, 7vw, 6rem); line-height: 1; }
+  .contact .caps { margin-top: 48px; display: flex; justify-content: center; gap: 24px; }
+
+  /* Menu pill + overlay */
+  .menu-pill {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 30;
+    background: var(--pill); color: var(--pill-text); border: 0; cursor: pointer;
+    width: 172px; height: 52px; font: inherit; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .overlay {
+    position: fixed; inset: 0; z-index: 25; background: var(--bg);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s;
+  }
+  .menu-open .overlay { opacity: 1; visibility: visible; }
+  .overlay a { font-family: Marcellus, Georgia, serif; font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.1; }
+
+  /* All headlines in caps */
+  .quote, .project h2, .contact a.big, .overlay a { text-transform: uppercase; letter-spacing: 0.01em; }
+  .quote { max-width: 16ch; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .giant .ch, .illum * { animation-duration: 0.01ms !important; animation-delay: 0s !important; }
+    .overlay { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="top pad caps">
+  <span>Brand &amp; Visual<br>Designer — Chicago</span>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://static1.squarespace.com/static/6967ce66a01c336c887bd430/t/6a465d0996909c61261ae916/1782996233384/Natalia_Alas_Resume_2026.pdf">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<section class="hero">
+  <h1 class="giant" aria-label="Natalia Alas">
+    <span class="line" aria-hidden="true">Natalia</span>
+    <span class="line" aria-hidden="true">Alas</span>
+  </h1>
+</section>
+
+<section class="intro pad">
+  <p class="quote">Work that holds up in production, not just in a deck</p>
+  <div class="services">
+    <p class="label">Services</p>
+    <ul>
+      <li>Brand Design</li>
+      <li>Packaging</li>
+      <li>Campaign &amp; Social</li>
+      <li>Email Design</li>
+      <li>Art Direction</li>
+    </ul>
+  </div>
+</section>
+
+<main id="work"></main>
+
+<section class="about" id="about">
+  <div class="stage">
+    <img class="photo" loading="lazy" alt="Natalia sitting at a cafe table"
+         src="https://images.squarespace-cdn.com/content/v1/6967ce66a01c336c887bd430/bc4d1c6f-77a8-40be-bcf6-3e5af766b190/IMG_2038.png?format=1500w">
+    <h2>About</h2>
+  </div>
+  <p class="bio">
+    Hey, I'm a graphic designer — brand &amp; visual designer based in Chicago. SCAD grad, four years in,
+    most of it at a B2B agency working on Coca-Cola programs (World of Coca-Cola, Share a Coke retail,
+    and partner activations placed with Disney, Six Flags, and SeaWorld), monthly CPG retainers, and can
+    packaging for Bold Monk Brewing. I care about work that holds up in production, not just in a deck.
+    Outside of that? Cafes and thrifting, every single time.
+  </p>
+  <div class="socials">
+    <p>Socials</p>
+    <div>
+      <a href="https://www.linkedin.com/in/nataliaalas/" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3v-11zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1v5.46h-4v-4.84c0-1.15-.02-2.64-1.6-2.64-1.62 0-1.86 1.26-1.86 2.56v4.92h-4v-11z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/natalia_alas/" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 7.3a4.7 4.7 0 1 0 0 9.4 4.7 4.7 0 0 0 0-9.4zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm4.9-8.95a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 3c-2.45 0-2.75.01-3.71.05C5.4 3.18 3.18 5.4 3.05 8.3 3.01 9.25 3 9.55 3 12s.01 2.75.05 3.71c.13 2.9 2.35 5.12 5.24 5.24.96.04 1.26.05 3.71.05s2.75-.01 3.71-.05c2.89-.13 5.12-2.35 5.24-5.24.04-.96.05-1.26.05-3.71s-.01-2.75-.05-3.7c-.13-2.9-2.35-5.12-5.24-5.25C14.75 3.01 14.45 3 12 3zm0 1.62c2.4 0 2.69.01 3.64.05 2.1.1 3.59 1.6 3.69 3.69.04.95.05 1.24.05 3.64s-.01 2.69-.05 3.64c-.1 2.09-1.59 3.59-3.69 3.69-.95.04-1.24.05-3.64.05s-2.69-.01-3.64-.05c-2.1-.1-3.59-1.6-3.69-3.69-.04-.95-.05-1.24-.05-3.64s.01-2.69.05-3.64c.1-2.09 1.59-3.59 3.69-3.69.95-.04 1.24-.05 3.64-.05z"/></svg>
+      </a>
+      <a href="mailto:nataliaalas1230@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24"><path d="M3 5h18v14H3V5zm2 2v.4l7 4.6 7-4.6V7H5zm14 2.8-7 4.6-7-4.6V17h14V9.8z"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="contact pad" id="contact">
+  <p class="label">Get in touch</p>
+  <a class="big" href="mailto:nataliaalas1230@gmail.com?subject=Project%20inquiry">Say hello</a>
+  <div class="caps">
+    <a href="https://www.linkedin.com/in/nataliaalas/">LinkedIn</a>
+    <a href="https://www.instagram.com/natalia_alas/">Instagram</a>
+  </div>
+</section>
+
+<button class="menu-pill" aria-expanded="false">Menu</button>
+<nav class="overlay" aria-hidden="true">
+  <a href="#work">Work</a>
+  <a href="#about">About</a>
+  <a href="https://static1.squarespace.com/static/6967ce66a01c336c887bd430/t/6a465d0996909c61261ae916/1782996233384/Natalia_Alas_Resume_2026.pdf">Resume</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<script src="data.js"></script>
+<script>
+  const projects = PROJECTS;
+
+  // Illuminated initial used for the first A of ALAS
+  const ILLUMINATED_A = `
+    <svg viewBox="0 0 120 140" aria-hidden="true">
+      <rect class="draw frame" x="2" y="2" width="116" height="136" pathLength="1"/>
+      <rect class="draw frame" x="8" y="8" width="104" height="124" pathLength="1"/>
+      <path class="hatch" d="M12 30 L30 12 M12 46 L46 12 M12 62 L62 12 M74 12 L108 46 M90 12 L108 30
+        M12 110 L34 128 M12 94 L46 128 M86 128 L108 106 M74 128 L108 94"/>
+      <path class="draw vine" pathLength="1" d="M14 124 C 26 104, 18 86, 30 72 S 22 40, 36 26 S 52 18, 58 14"/>
+      <path class="draw vine" pathLength="1" d="M106 124 C 94 104, 102 86, 90 72 S 98 40, 84 26 S 68 18, 62 14"/>
+      <path class="draw vine" pathLength="1" d="M30 72 C 20 66, 18 58, 22 52"/>
+      <path class="draw vine" pathLength="1" d="M90 72 C 100 66, 102 58, 98 52"/>
+      <path class="draw vine" pathLength="1" d="M26 104 C 16 100, 14 92, 18 86"/>
+      <path class="draw vine" pathLength="1" d="M94 104 C 104 100, 106 92, 102 86"/>
+      <g class="leaf">
+        <ellipse cx="22" cy="51" rx="2.6" ry="5" transform="rotate(-25 22 51)"/>
+        <ellipse cx="98" cy="51" rx="2.6" ry="5" transform="rotate(25 98 51)"/>
+        <ellipse cx="18" cy="85" rx="2.4" ry="4.6" transform="rotate(-20 18 85)"/>
+        <ellipse cx="102" cy="85" rx="2.4" ry="4.6" transform="rotate(20 102 85)"/>
+        <ellipse cx="36" cy="26" rx="2.2" ry="4.2" transform="rotate(40 36 26)"/>
+        <ellipse cx="84" cy="26" rx="2.2" ry="4.2" transform="rotate(-40 84 26)"/>
+        <circle cx="60" cy="13" r="2.2"/>
+      </g>
+      <text class="letter" x="60" y="104">A</text>
+    </svg>`;
+
+  // Split the giant name into letters that rise in one after another
+  document.querySelectorAll('.giant .line').forEach((line, row) => {
+    line.innerHTML = [...line.textContent].map((c, i) => {
+      const delay = 0.2 + row * 0.25 + i * 0.05;
+      if (row === 1 && i === 0) {
+        return `<span class="ch illum" style="--d:${delay}s">${ILLUMINATED_A}</span>`;
+      }
+      return `<span class="ch" style="animation-delay:${delay}s">${c}</span>`;
+    }).join('');
+  });
+
+  // Hovering the illuminated A draws it again from scratch
+  const illum = document.querySelector('.illum');
+  illum.addEventListener('mouseenter', () => {
+    const anims = illum.getAnimations({ subtree: true });
+    if (anims.some(a => a.playState === 'running')) return;
+    illum.style.setProperty('--d', '0s');
+    illum.innerHTML = ILLUMINATED_A;
+  });
+
+  const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const pad = n => String(n).padStart(2, '0');
+  document.getElementById('work').innerHTML = projects.map(p => `
+    <article class="project">
+      <div class="pad">
+        <h2><a href="project.html?p=${p.slug}">${esc(p.title)}</a></h2>
+        <div class="meta">
+          <div><p class="label">Year</p><ul><li>${p.year}</li></ul></div>
+          <div><p class="label">Creative Fields</p><ul>${p.fields.map(f => `<li>${esc(f)}</li>`).join('')}</ul></div>
+        </div>
+        <div class="about-p"><p class="label">About</p>${p.summary.map(a => `<p>${esc(a)}</p>`).join('')}</div>
+        <a class="more" href="project.html?p=${p.slug}">Full Project</a>
+        <p class="count"><span class="cur">01</span> / ${pad(p.preview.length)}</p>
+      </div>
+      <div class="slides" tabindex="0" aria-label="${esc(p.title)} images">
+        ${p.preview.map((src, i) => `<img loading="lazy" draggable="false" alt="${esc(p.title)} work, image ${i + 1}" src="${CDN}${src}?format=1000w">`).join('')}
+      </div>
+    </article>`).join('');
+
+  // Image counters + drag to scroll
+  document.querySelectorAll('.project').forEach(article => {
+    const track = article.querySelector('.slides');
+    const cur = article.querySelector('.cur');
+    const imgs = [...track.querySelectorAll('img')];
+    const update = () => {
+      const left = track.scrollLeft + 24;
+      let i = imgs.findIndex(img => img.offsetLeft + img.offsetWidth / 2 > left);
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) i = imgs.length - 1;
+      cur.textContent = pad(Math.max(0, i) + 1);
+    };
+    track.addEventListener('scroll', update, { passive: true });
+
+    let down = false, startX = 0, startLeft = 0;
+    track.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; startX = e.clientX; startLeft = track.scrollLeft;
+      track.style.scrollSnapType = 'none'; track.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointermove', e => { if (down) track.scrollLeft = startLeft - (e.clientX - startX); });
+    window.addEventListener('pointerup', () => {
+      if (!down) return;
+      down = false; track.style.scrollSnapType = ''; track.style.cursor = '';
+    });
+  });
+
+  // Menu
+  const pill = document.querySelector('.menu-pill');
+  const overlay = document.querySelector('.overlay');
+  const setMenu = open => {
+    document.body.classList.toggle('menu-open', open);
+    pill.textContent = open ? 'Close' : 'Menu';
+    pill.setAttribute('aria-expanded', open);
+    overlay.setAttribute('aria-hidden', !open);
+  };
+  pill.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+</script>
+</body>
+</html>
