@@ -125,7 +125,7 @@
   <ul>
     <li><a href="index.html#work">Work</a></li>
     <li><a href="index.html#about">About</a></li>
-    <li><a href="https://static1.squarespace.com/static/6967ce66a01c336c887bd430/t/6a465d0996909c61261ae916/1782996233384/Natalia_Alas_Resume_2026.pdf">Resume</a></li>
+    <li><a href="files/natalia-alas-resume-2026.pdf">Resume</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
 </div>
@@ -157,12 +157,12 @@
     const alt = i => `${esc(p.title)}${s.title ? ' — ' + esc(s.title) : ''}, image ${i + 1}`;
     if (s.layout === 'columns') {
       return `<div class="columns pad">${s.imgs.map((src, i) =>
-        `<img loading="lazy" alt="${alt(i)}" src="${CDN}${src}?format=1000w">`).join('')}</div>`;
+        `<img loading="lazy" alt="${alt(i)}" src="${CDN}${src}">`).join('')}</div>`;
     }
     if (s.layout === 'stack') {
       const wide = s.imgs.length === 1 ? ' wide' : '';
       return `<div class="stack pad${wide}">${s.imgs.map((src, i) =>
-        `<img loading="lazy" alt="${alt(i)}" src="${CDN}${src}${wide ? "?format=2500w" : ""}">`).join("")}</div>`;
+        `<img loading="lazy" alt="${alt(i)}" src="${CDN}${src}">`).join("")}</div>`;
     }
     return `
       <div class="gallery-bar pad">
@@ -170,7 +170,7 @@
         <div class="arrows"><button class="prev" aria-label="Previous image">←</button><button class="nxt" aria-label="Next image">→</button></div>
       </div>
       <div class="slides" tabindex="0" aria-label="${esc(s.title || p.title)} images">
-        ${s.imgs.map((src, i) => `<img loading="lazy" draggable="false" alt="${alt(i)}" src="${CDN}${src}?format=1500w">`).join('')}
+        ${s.imgs.map((src, i) => `<img loading="lazy" draggable="false" alt="${alt(i)}" src="${CDN}${src}">`).join('')}
       </div>`;
   };
 

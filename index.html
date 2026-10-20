@@ -153,7 +153,7 @@
   <ul>
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="https://static1.squarespace.com/static/6967ce66a01c336c887bd430/t/6a465d0996909c61261ae916/1782996233384/Natalia_Alas_Resume_2026.pdf">Resume</a></li>
+    <li><a href="files/natalia-alas-resume-2026.pdf">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </div>
@@ -184,7 +184,7 @@
 <section class="about" id="about">
   <div class="stage">
     <img class="photo" loading="lazy" alt="Natalia sitting at a cafe table"
-         src="https://images.squarespace-cdn.com/content/v1/6967ce66a01c336c887bd430/bc4d1c6f-77a8-40be-bcf6-3e5af766b190/IMG_2038.png?format=1500w">
+         src="images/img_2038.png">
     <h2>About</h2>
   </div>
   <p class="bio">
@@ -223,7 +223,7 @@
 <nav class="overlay" aria-hidden="true">
   <a href="#work">Work</a>
   <a href="#about">About</a>
-  <a href="https://static1.squarespace.com/static/6967ce66a01c336c887bd430/t/6a465d0996909c61261ae916/1782996233384/Natalia_Alas_Resume_2026.pdf">Resume</a>
+  <a href="files/natalia-alas-resume-2026.pdf">Resume</a>
   <a href="#contact">Contact</a>
 </nav>
 
@@ -291,7 +291,7 @@
         <p class="count"><span class="cur">01</span> / ${pad(p.preview.length)}</p>
       </div>
       <div class="slides" tabindex="0" aria-label="${esc(p.title)} images">
-        ${p.preview.map((src, i) => `<img loading="lazy" draggable="false" alt="${esc(p.title)} work, image ${i + 1}" src="${CDN}${src}?format=1000w">`).join('')}
+        ${p.preview.map((src, i) => `<img loading="lazy" draggable="false" alt="${esc(p.title)} work, image ${i + 1}" src="${CDN}${src}">`).join('')}
       </div>
     </article>`).join('');
 
